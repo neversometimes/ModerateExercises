@@ -5,7 +5,7 @@ public class Main {
 
         intersection(0, 0, 7, -7, 0, -5, 7, -2);
 
-    //    numberSwapper(234, 232);
+        numberSwapper(234, 232);
     }
     public static void intersection (int x1, int y1, int x2, int y2,
                                         int x3, int y3, int x4, int y4) {
