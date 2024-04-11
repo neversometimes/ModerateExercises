@@ -1,12 +1,41 @@
 package org.example;
+import static java.lang.Math.abs;
 
 public class Main {
     public static void main(String[] args) {
+
+        int[] array1 = {1, 3, 200, 11, 2};
+        int[] array2 = {9, 33, 217, 18, 66};
+        System.out.println(smallestDiff(array1, array2));    // expected output: 2 (11, 9)
 
         intersection(0, 0, 7, -7, 0, -5, 7, -2);
 
         numberSwapper(234, 232);
     }
+
+    public static int smallestDiff (int[] arr1, int[] arr2) {
+        // Problem: given two arrays, compute the pair values (one value in each array) with the smallest
+        //  non-negative difference.  Return the difference.
+
+        int curDiff; int val1=0; int val2=0;
+        int minDiff = abs(arr1[1] - arr2[1]);   // initialize the minDiff with absolute value
+                                                    // of diff from first two values in arrays
+        for (int i = 0; i < arr1.length; i++ ) {
+
+            for (int j = 0; j < arr2.length; j++) {
+
+                curDiff = abs(arr1[i]-arr2[j]);
+                if (curDiff < minDiff) {            // if the current diff is smaller than min diff
+                    minDiff = curDiff;          //  current diff is new min diff
+                    val1 = arr1[i];         // save min val1 from arr1
+                    val2 = arr2[j];         // save min val2 from arr2
+                }
+            }
+        }
+        //System.out.println("min vals: " + val1 + ", " + val2 );
+        return minDiff;
+    }
+
     public static void intersection (int x1, int y1, int x2, int y2,
                                         int x3, int y3, int x4, int y4) {
 
