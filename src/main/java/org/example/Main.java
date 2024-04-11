@@ -27,7 +27,7 @@ public class Main {
         t = tNum/tDen;
 
         uNum = ((x1 - x2)*(y1 - y3)) - ((y1 - y2)*(x1 - x3));
-        uDen = ((x1 - x2)*(y3 - y4)) - ((y1 - y2)*(x3 - x4));
+        uDen = tDen;
         u =  -uNum/uDen;
 
         //System.out.println(t + "  " + u);
