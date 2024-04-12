@@ -22,7 +22,7 @@ public class Main {
     }
 
     public static boolean tttOutcome (char [][] board) {
-        // Problem: write a method to check if someone has one in a game of tic-tac-toe
+        // Problem 4: write a method to check if someone has one in a game of tic-tac-toe
 
         // My solution was first solved for 'X' then added 'O' as valid tokens on the T-T-T board
 
@@ -64,7 +64,7 @@ public class Main {
     }
 
     public static int smallestDiff (int[] arr1, int[] arr2) {
-        // Problem: given two arrays, compute the pair values (one value in each array) with the smallest
+        // Problem 3: given two arrays, compute the pair values (one value in each array) with the smallest
         //  non-negative difference.  Return the difference.
 
         int curDiff; int val1=0; int val2=0;
@@ -89,7 +89,7 @@ public class Main {
     public static void intersection (int x1, int y1, int x2, int y2,
                                         int x3, int y3, int x4, int y4) {
 
-        // Problem: given 2 straight line segments (represented as a start and end point),
+        // Problem 2: given 2 straight line segments (represented as a start and end point),
         //  compute the point of intersection, if any.
 
         // Note: easy to derive using math formula search
@@ -127,7 +127,7 @@ public class Main {
     }
 
     public static void numberSwapper (int a, int b) {
-        // Problem: write a function to swap two numbers in place (no temp variables)
+        // Problem 1: write a function to swap two numbers in place (no temp variables)
 
         // simple solution is to use subtraction with the two values a and b
 
