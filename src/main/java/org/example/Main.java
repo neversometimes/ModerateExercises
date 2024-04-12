@@ -9,17 +9,17 @@ public class Main {
                  {'O', 'X', 'X'},
                  {'X', 'O', 'O'}};
 
-        // expect true if either X or O have 3 across, diagonal or down in a row
+        // expected output: true if either X or O have 3 across, diagonal or down in a row in above 2D array
         System.out.println("Has a winner: " + tttOutcome(tictactoe));
 
-/*        int[] array1 = {1, 3, 200, 11, 2};
+        int[] array1 = {1, 3, 200, 11, 2};
         int[] array2 = {9, 33, 217, 18, 66};
         System.out.println(smallestDiff(array1, array2));    // expected output: 2 (11, 9)
 
         intersection(0, 0, 7, -7, 0, -5, 7, -2);
 
         numberSwapper(234, 232);
- */   }
+    }
 
     public static boolean tttOutcome (char [][] board) {
         // Problem: write a method to check if someone has one in a game of tic-tac-toe
