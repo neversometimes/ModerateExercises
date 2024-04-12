@@ -4,13 +4,63 @@ import static java.lang.Math.abs;
 public class Main {
     public static void main(String[] args) {
 
-        int[] array1 = {1, 3, 200, 11, 2};
+        char [][] tictactoe =
+                {{'O', 'O', 'X'},
+                 {'O', 'X', 'X'},
+                 {'X', 'O', 'O'}};
+
+        // expect true if either X or O have 3 across, diagonal or down in a row
+        System.out.println("Has a winner: " + tttOutcome(tictactoe));
+
+/*        int[] array1 = {1, 3, 200, 11, 2};
         int[] array2 = {9, 33, 217, 18, 66};
         System.out.println(smallestDiff(array1, array2));    // expected output: 2 (11, 9)
 
         intersection(0, 0, 7, -7, 0, -5, 7, -2);
 
         numberSwapper(234, 232);
+ */   }
+
+    public static boolean tttOutcome (char [][] board) {
+        // Problem: write a method to check if someone has one in a game of tic-tac-toe
+
+        // My solution was first solved for 'X' then added 'O' as valid tokens on the T-T-T board
+
+
+        int colCountX = 0; int rtDiagX = 0;  // variables to count tokens for each valid win: diag/row/column
+        int rowCountX = 0; int lfDiagX = 0;
+        int colCountO = 0; int rtDiagO = 0;
+        int rowCountO = 0; int lfDiagO = 0;
+
+        for (int i = 0; i < 3; i++) {           // two-dimensional array for loops to check every board token
+            for (int j =0; j < 3; j++) {
+                //System.out.println("col:"+board[j][i]+" row:"+board[i][j]);
+
+                if (board[j][i] == 'X') {                       // checks for three tokens in each column
+                    colCountX++;
+                } else if (board[j][i] == 'O') {colCountO++;}
+
+                if (board[i][j] == 'X') {                       // checks for three tokens in each row
+                    rowCountX++;
+                } else if (board[i][j] == 'O') {rowCountO++;}
+
+                if ((i == j) && (board[i][j] == 'X')) {         // right diagonal board spots have equal index values
+                    rtDiagX++;
+                } else if ((i == j) && (board[i][j] == 'O')) { rtDiagO++;}
+
+                if (((i+j) == 2) && (board[i][j] == 'X')) {     // left diagonal board spots have index sum == 2
+                    lfDiagX++;
+                } else if (((i+j) == 2) && (board[i][j] == 'O')) { lfDiagO++;}
+
+            }
+            if ((rowCountX == 3) || (colCountX == 3) || (rtDiagX == 3) || (lfDiagX == 3) ||
+                    (rowCountO == 3) || (colCountO == 3) || (rtDiagO == 3) || (lfDiagO == 3)) {
+                return true;  // returns true upon first 3 successive tokens found that win the game
+            } else {
+                rowCountX = 0; colCountX = 0; colCountO = 0; rowCountO = 0;
+            }
+        }
+        return false;  // exhaustive search not finding 3 successive tokens on the board returns false
     }
 
     public static int smallestDiff (int[] arr1, int[] arr2) {
@@ -78,6 +128,8 @@ public class Main {
 
     public static void numberSwapper (int a, int b) {
         // Problem: write a function to swap two numbers in place (no temp variables)
+
+        // simple solution is to use subtraction with the two values a and b
 
         System.out.println("Before Switch: a:" + a + "  b:" + b);
         if (a > b) {
