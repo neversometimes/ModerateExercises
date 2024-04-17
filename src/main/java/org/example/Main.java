@@ -15,7 +15,7 @@ public class Main {
         char [][] tictactoe =
                 {{'O', 'O', 'X'},
                  {'O', 'X', 'X'},
-                 {'X', 'O', 'O'}};
+                 {'X', 'O', 'O'}};  // input tic-tac-toe board
 
         // expected output: true if either X or O have 3 across, diagonal or down in a row in above 2D array
         System.out.println("Has a winner: " + tttOutcome(tictactoe));
