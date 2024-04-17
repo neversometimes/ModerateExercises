@@ -4,6 +4,14 @@ import static java.lang.Math.abs;
 public class Main {
     public static void main(String[] args) {
 
+        numberSwapper(28, 232);  // this swaps 2 variable numbers in place: see code.
+
+        intersection(0, 0, 7, -7, 0, -5, 7, -2); // expect: intersection p(3.5, -3.5)
+
+        int[] array1 = {1, 3, 200, 11, 2};      // input array 1
+        int[] array2 = {9, 33, 217, 18, 66};    // input array 2
+        System.out.println(smallestDiff(array1, array2));    // expected output: 2 (11, 9)
+
         char [][] tictactoe =
                 {{'O', 'O', 'X'},
                  {'O', 'X', 'X'},
@@ -12,13 +20,183 @@ public class Main {
         // expected output: true if either X or O have 3 across, diagonal or down in a row in above 2D array
         System.out.println("Has a winner: " + tttOutcome(tictactoe));
 
-        int[] array1 = {1, 3, 200, 11, 2};
-        int[] array2 = {9, 33, 217, 18, 66};
-        System.out.println(smallestDiff(array1, array2));    // expected output: 2 (11, 9)
+        System.out.println("\n" + intToEnglish(2145937268));  // expect: output english version of this integer
 
-        intersection(0, 0, 7, -7, 0, -5, 7, -2);
+    }
 
-        numberSwapper(234, 232);
+    public static String intToEnglish(int n) {
+        // Problem 5: given any integer, print an English phrase that describes
+        // e.g. input: 1234
+        //     output: "One-Thousand, Two-Hundred Thirty Four"
+
+        String englishNumberStr = "";
+        String masterOutStr = "";
+        String onesStr = "";
+        String tensStr = "";
+        String hundsStr = "";
+
+        int blkCount = 1; int pwr = 1000;   // number is broken up into blocks of 3; this counts those blocks
+        while ((n / pwr) >= 1 ) {
+            pwr = pwr * 1000;
+            blkCount++;
+        }
+
+        int[] digits = new int[4];      // this array will hold the 3-digit number integers
+
+        digits = blockDigits(n, blkCount);  // populate the array with the 3-digit number integers
+
+        for (int j = blkCount - 1; j >= 0; j--) {   // loop to convert each 3-digit block into text
+
+            onesStr = getOnes(digits[j]);
+            tensStr = getTens(digits[j]);
+            hundsStr = getHundreds(digits[j]);
+
+            englishNumberStr = hundsStr + tensStr + onesStr;  // concatenate
+            if (!englishNumberStr.isEmpty()) {          // this checks if the 3-digit is "000" and skips concatenation
+                switch (j) {
+                    case 1: {
+                        masterOutStr = masterOutStr + englishNumberStr + " Thousand";
+                        break;
+                    }
+                    case 2: {
+                        masterOutStr = masterOutStr + englishNumberStr + " Million";
+                        break;
+                    }
+                    case 3: {
+                        masterOutStr = masterOutStr + englishNumberStr + " Billion";
+                        break;
+                    }
+                    default: {
+                        masterOutStr = masterOutStr + englishNumberStr;
+                    }
+                }
+            }
+        }
+        return masterOutStr;  // master output concatenated text version of the input integer
+    }
+    public static int[] blockDigits(int n, int blockCount) {
+        // need to account for up to 4 blocks of 3-digit array values
+        //  The cases below parse the given integer into 3-digit integer values and add them to the return array
+
+        int[] digs = new int[4]; int temp;
+        switch (blockCount) {
+            case 1 : { digs[0] = n; break; }
+
+            case 2 : { digs[0] = n - ((n/1000) * 1000);
+                       digs[1] = n/1000; break;}
+
+            case 3 : { digs[0] = n - ((n/1000) * 1000);
+                       temp = n/1000;
+                       digs[1] = temp - ((temp/1000)*1000);
+                       digs[2] = n/1000000; break;}
+            case 4: { digs[0] = n - ((n/1000) * 1000);
+                      temp = n/1000;
+                      digs[1] = temp - ((temp/1000)*1000);
+                      temp = n/1000000;
+                      digs[2] = temp - ((temp/1000)*1000);
+                      digs[3] = n/1000000000; break;}
+        }
+        return digs;
+    }
+    public static String getOnes(int n) {
+        int ones = (n - ((n / 10)*10));
+        if (((n - ((n / 100)*100 )) / 10) == 1) { ones = 0;}
+        switch (ones) {
+            case 9:
+                return " Nine";
+            case 8:
+                return " Eight";
+            case 7:
+                return " Seven";
+            case 6:
+                return " Six";
+            case 5:
+                return " Five";
+            case 4:
+                return " Four";
+            case 3:
+                return " Three";
+            case 2:
+                return " Two";
+            case 1:
+                return " One";
+            default:
+                return "";
+        }
+    }
+    public static String getTens(int n) {
+        int highTens = ((n - ((n / 100)*100 )) / 10);
+        int lowTens = ((n - ((n / 100)*100 )) % 10);
+        switch (highTens){
+            case 9:
+                return " Ninety";
+            case 8:
+                return " Eighty";
+            case 7:
+                return " Seventy";
+            case 6:
+                return " Sixty";
+            case 5:
+                return " Fifty";
+            case 4:
+                return " Forty";
+            case 3:
+                return " Thirty";
+            case 2:
+                return " Twenty";
+            case 1:
+                switch (n % 10) {
+
+                    case 9:
+                        return " Nineteen";
+                    case 8:
+                        return " Eighteen";
+                    case 7:
+                        return " Seventeen";
+                    case 6:
+                        return " Sixteen";
+                    case 5:
+                        return " Fifteen";
+                    case 4:
+                        return " Fourteen";
+                    case 3:
+                        return " Thirteen";
+                    case 2:
+                        return " Twelve";
+                    case 1:
+                        return " Eleven";
+                    default:
+                        return " Ten";
+
+                }
+            default:
+                return "";
+        }
+    }
+
+    public static String getHundreds(int n) {
+        switch (n / 100) {
+            case 9:
+                return " Nine-Hundred";
+            case 8:
+                return " Eight-Hundred";
+            case 7:
+                return " Seven-Hundred";
+            case 6:
+                return " Six-Hundred";
+            case 5:
+                return " Five-Hundred";
+            case 4:
+                return " Four-Hundred";
+            case 3:
+                return " Three-Hundred";
+            case 2:
+                return " Two-Hundred";
+            case 1:
+                return " One-Hundred";
+            default:
+                return "";
+        }
     }
 
     public static boolean tttOutcome (char [][] board) {
