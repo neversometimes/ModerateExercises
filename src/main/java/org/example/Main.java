@@ -26,37 +26,35 @@ public class Main {
         System.out.println("\n" + intToEnglish(2145937268));  // expect: output english version of this integer
    */
 
-        System.out.println(primes(29));
+        System.out.println("Primes:" + primes(50));
 
     }
 
     public static ArrayList<Integer> primes(int n){
         // Problem 6: write a method to return an array of prime numbers up to input int n
-        //
-        ArrayList<Integer> outArr = new ArrayList<>() ;
-        byte[] arrP = new byte[n + 1];
-        for (int i = 0; i < arrP.length; i++) {
-            arrP[i] = 0;
-        }
-        arrP[1] = 1; arrP[2] = 1;  // by definition
+        //               I used an ArrayList as return type
 
-        for (int k = n; k > 1; k--) {
-            if (((k%2) != 0) && (checkPrime(k))) {
+        ArrayList<Integer> outArr = new ArrayList<>() ;
+        byte[] arrP = new byte[n + 1];              // byte array initialized with '0' values
+
+        arrP[1] = 1; arrP[2] = 1;  // by definition 1 & 2 are both Prime Numbers
+
+        for (int k = n; k > 2; k--) {   // check all values from n -> 3
+            if (((k%2) != 0) && (checkPrime(k))) {  // if n is not even AND n is Prime , set bit
                 arrP[k] = 1;
             }
         }
         for (int indx = 0; indx < arrP.length; indx++) {
-            if (arrP[indx] == 1) {
+            if (arrP[indx] == 1) {      // if the array element is 1, then add to ArrayList
                 outArr.add(indx);
             }
         }
-        return outArr;
+        return outArr;  // return array of prime numbers <= n
     }
 
     public static boolean checkPrime(int n) {
-        if ((n%2) == 0) { return false; }
-        for (int j=(n-1); j > 1; j--) {
-            if ((n%j) == 0) {
+        for (int j=(n-1); j > 2; j--) {
+            if ((n%j) == 0) {       // check divisibility for n of all values n-1 to 3
                 return false;
             }
         }
