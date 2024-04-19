@@ -7,7 +7,7 @@ import static java.lang.Math.abs;
 public class Main {
     public static void main(String[] args) {
 
-   /*     numberSwapper(28, 232);  // this swaps 2 variable numbers in place: see code.
+        numberSwapper(28, 232);  // this swaps 2 variable numbers in place: see code.
 
         intersection(0, 0, 7, -7, 0, -5, 7, -2); // expect: intersection p(3.5, -3.5)
 
@@ -24,9 +24,8 @@ public class Main {
         System.out.println("Has a winner: " + tttOutcome(tictactoe));
 
         System.out.println("\n" + intToEnglish(2145937268));  // expect: output english version of this integer
-   */
 
-        System.out.println("Primes:" + primes(50));
+        System.out.println("Primes:" + primes(50));  // expect: primes <= 50
 
     }
 
