@@ -1,10 +1,13 @@
 package org.example;
+
+import java.util.ArrayList;
 import static java.lang.Math.abs;
+
 
 public class Main {
     public static void main(String[] args) {
 
-        numberSwapper(28, 232);  // this swaps 2 variable numbers in place: see code.
+   /*     numberSwapper(28, 232);  // this swaps 2 variable numbers in place: see code.
 
         intersection(0, 0, 7, -7, 0, -5, 7, -2); // expect: intersection p(3.5, -3.5)
 
@@ -21,8 +24,45 @@ public class Main {
         System.out.println("Has a winner: " + tttOutcome(tictactoe));
 
         System.out.println("\n" + intToEnglish(2145937268));  // expect: output english version of this integer
+   */
+
+        System.out.println(primes(29));
 
     }
+
+    public static ArrayList<Integer> primes(int n){
+        // Problem 6: write a method to return an array of prime numbers up to input int n
+        //
+        ArrayList<Integer> outArr = new ArrayList<>() ;
+        byte[] arrP = new byte[n + 1];
+        for (int i = 0; i < arrP.length; i++) {
+            arrP[i] = 0;
+        }
+        arrP[1] = 1; arrP[2] = 1;  // by definition
+
+        for (int k = n; k > 1; k--) {
+            if (((k%2) != 0) && (checkPrime(k))) {
+                arrP[k] = 1;
+            }
+        }
+        for (int indx = 0; indx < arrP.length; indx++) {
+            if (arrP[indx] == 1) {
+                outArr.add(indx);
+            }
+        }
+        return outArr;
+    }
+
+    public static boolean checkPrime(int n) {
+        if ((n%2) == 0) { return false; }
+        for (int j=(n-1); j > 1; j--) {
+            if ((n%j) == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public static String intToEnglish(int n) {
         // Problem 5: given any integer, print an English phrase that describes
