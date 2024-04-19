@@ -13,20 +13,53 @@ public class Main {
 
         int[] array1 = {1, 3, 200, 11, 2};      // input array 1
         int[] array2 = {9, 33, 217, 18, 66};    // input array 2
-        System.out.println(smallestDiff(array1, array2));    // expected output: 2 (11, 9)
+        System.out.println("Smallest Diff: " + smallestDiff(array1, array2));    // expected output: 2 (11, 9)
 
         char [][] tictactoe =
                 {{'O', 'O', 'X'},
                  {'O', 'X', 'X'},
                  {'X', 'O', 'O'}};  // input tic-tac-toe board
-
         // expected output: true if either X or O have 3 across, diagonal or down in a row in above 2D array
         System.out.println("Has a winner: " + tttOutcome(tictactoe));
 
-        System.out.println("\n" + intToEnglish(2145937268));  // expect: output english version of this integer
+        System.out.println(intToEnglish(2145937268));  // expect: output english version of this integer
 
         System.out.println("Primes:" + primes(50));  // expect: primes <= 50
 
+        int[] chkSeq = {-3, 7, 3, -2, 7, 5};
+        System.out.println("Max Sequence Sum: " + largestSequenceSum(chkSeq));  //expect: 20 (7, 3, -2, 7, 5)
+
+    }
+
+    public static int largestSequenceSum (int[] seq) {
+        //  Problem 7: write a method to find the contiguous sequence with the largest sum in a given array .
+        //            e.g. input: 2, -8, 3, -2, 4, -10
+        //                 output: 5   (i.e.  {3, -2, 4} )
+        //          Method will handle various length arrays.
+        //
+
+        int max = Integer.MIN_VALUE;    // set to MIN_VALUE integer to capture negative value sums
+        int sum = 0;
+
+        // These for loops act to capture all sequence permutations of the given array using its indices
+        for (int m = 1; m < seq.length; m++) {
+            int i = 0;
+            for (int k = m; k < seq.length; k++) {
+                sum = getSum(seq, i, k);        // get the sum of the current bound sequence from i to k
+                max = sum > max ? sum : max;        // check sum of current sequence; make max if applicable
+                //System.out.println(i + ":" + k + ":" + max);
+                i++;
+            }
+        }
+        return max;
+    }
+    public static int getSum (int[] arr, int s, int e) {
+        // This method adds the values of the array sequence between sTART and eND indices
+        int total = 0;
+        for (int i = s; i <= e; i++) {
+            total += arr[i];
+        }
+        return total;
     }
 
     public static ArrayList<Integer> primes(int n){
@@ -92,15 +125,15 @@ public class Main {
             if (!englishNumberStr.isEmpty()) {          // this checks if the 3-digit is "000" and skips concatenation
                 switch (j) {
                     case 1: {
-                        masterOutStr = masterOutStr + englishNumberStr + " Thousand";
+                        masterOutStr = masterOutStr + englishNumberStr + "Thousand ";
                         break;
                     }
                     case 2: {
-                        masterOutStr = masterOutStr + englishNumberStr + " Million";
+                        masterOutStr = masterOutStr + englishNumberStr + "Million ";
                         break;
                     }
                     case 3: {
-                        masterOutStr = masterOutStr + englishNumberStr + " Billion";
+                        masterOutStr = masterOutStr + englishNumberStr + "Billion ";
                         break;
                     }
                     default: {
@@ -140,23 +173,23 @@ public class Main {
         if (((n - ((n / 100)*100 )) / 10) == 1) { ones = 0;}
         switch (ones) {
             case 9:
-                return " Nine";
+                return "Nine ";
             case 8:
-                return " Eight";
+                return "Eight ";
             case 7:
-                return " Seven";
+                return "Seven ";
             case 6:
-                return " Six";
+                return "Six ";
             case 5:
-                return " Five";
+                return "Five ";
             case 4:
-                return " Four";
+                return "Four ";
             case 3:
-                return " Three";
+                return "Three ";
             case 2:
-                return " Two";
+                return "Two ";
             case 1:
-                return " One";
+                return "One ";
             default:
                 return "";
         }
@@ -166,44 +199,44 @@ public class Main {
         int lowTens = ((n - ((n / 100)*100 )) % 10);
         switch (highTens){
             case 9:
-                return " Ninety";
+                return "Ninety ";
             case 8:
-                return " Eighty";
+                return "Eighty ";
             case 7:
-                return " Seventy";
+                return "Seventy ";
             case 6:
-                return " Sixty";
+                return "Sixty ";
             case 5:
-                return " Fifty";
+                return "Fifty ";
             case 4:
-                return " Forty";
+                return "Forty ";
             case 3:
-                return " Thirty";
+                return "Thirty ";
             case 2:
-                return " Twenty";
+                return "Twenty ";
             case 1:
                 switch (n % 10) {
 
                     case 9:
-                        return " Nineteen";
+                        return "Nineteen ";
                     case 8:
-                        return " Eighteen";
+                        return "Eighteen ";
                     case 7:
-                        return " Seventeen";
+                        return "Seventeen ";
                     case 6:
-                        return " Sixteen";
+                        return "Sixteen ";
                     case 5:
-                        return " Fifteen";
+                        return "Fifteen ";
                     case 4:
-                        return " Fourteen";
+                        return "Fourteen ";
                     case 3:
-                        return " Thirteen";
+                        return "Thirteen ";
                     case 2:
-                        return " Twelve";
+                        return "Twelve ";
                     case 1:
-                        return " Eleven";
+                        return "Eleven ";
                     default:
-                        return " Ten";
+                        return "Ten ";
 
                 }
             default:
@@ -214,23 +247,23 @@ public class Main {
     public static String getHundreds(int n) {
         switch (n / 100) {
             case 9:
-                return " Nine-Hundred";
+                return "Nine-Hundred ";
             case 8:
-                return " Eight-Hundred";
+                return "Eight-Hundred ";
             case 7:
-                return " Seven-Hundred";
+                return "Seven-Hundred ";
             case 6:
-                return " Six-Hundred";
+                return "Six-Hundred ";
             case 5:
-                return " Five-Hundred";
+                return "Five-Hundred ";
             case 4:
-                return " Four-Hundred";
+                return "Four-Hundred ";
             case 3:
-                return " Three-Hundred";
+                return "Three-Hundred ";
             case 2:
-                return " Two-Hundred";
+                return "Two-Hundred ";
             case 1:
-                return " One-Hundred";
+                return "One-Hundred ";
             default:
                 return "";
         }
