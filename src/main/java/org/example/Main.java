@@ -7,14 +7,20 @@ import static java.lang.Math.abs;
 public class Main {
     public static void main(String[] args) {
 
-        numberSwapper(28, 232);  // this swaps 2 variable numbers in place: see code.
+        //ex1: swap 2 variable values in place WITHOUT using temp variable
+        numberSwapper(28, 232);
 
+        //ex2: find intersection point of 2 lines
         intersection(0, 0, 7, -7, 0, -5, 7, -2); // expect: intersection p(3.5, -3.5)
 
+        //ex3: given two arrays, compute the pair values (one value in each array)
+        //     with the smallest non-negative difference.  Return the difference.
         int[] array1 = {1, 3, 200, 11, 2};      // input array 1
         int[] array2 = {9, 33, 217, 18, 66};    // input array 2
         System.out.println("Smallest Diff: " + smallestDiff(array1, array2));    // expected output: 2 (11, 9)
 
+
+        //ex4: check if someone has won in a game of tic-tac-toe
         char [][] tictactoe =
                 {{'O', 'O', 'X'},
                  {'O', 'X', 'X'},
@@ -22,17 +28,20 @@ public class Main {
         // expected output: true if either X or O have 3 across, diagonal or down in a row in above 2D array
         System.out.println("Has a winner: " + tttOutcome(tictactoe));
 
+        //ex5: convert number to English text
         System.out.println(intToEnglish(2145937268));  // expect: output english version of this integer
 
+        //ex6: print out primes up to n
         System.out.println("Primes:" + primes(50));  // expect: primes <= 50
 
+        //ex7: find the contiguous sequence with the largest sum in a given array
         int[] chkSeq = {-3, 7, 3, -2, 7, 5};
         System.out.println("Max Sequence Sum: " + largestSequenceSum(chkSeq));  //expect: 20 (7, 3, -2, 7, 5)
 
     }
 
     public static int largestSequenceSum (int[] seq) {
-        //  Problem 7: write a method to find the contiguous sequence with the largest sum in a given array .
+        //  Exercise 7: write a method to find the contiguous sequence with the largest sum in a given array .
         //            e.g. input: 2, -8, 3, -2, 4, -10
         //                 output: 5   (i.e.  {3, -2, 4} )
         //          Method will handle various length arrays.
@@ -63,7 +72,7 @@ public class Main {
     }
 
     public static ArrayList<Integer> primes(int n){
-        // Problem 6: write a method to return an array of prime numbers up to input int n
+        // Exercise 6: write a method to return an array of prime numbers up to input int n
         //               I used an ArrayList as return type
 
         ArrayList<Integer> outArr = new ArrayList<>() ;
@@ -95,7 +104,7 @@ public class Main {
 
 
     public static String intToEnglish(int n) {
-        // Problem 5: given any integer, print an English phrase that describes
+        // Exercise 5: given any integer, print an English text
         // e.g. input: 1234
         //     output: "One-Thousand, Two-Hundred Thirty Four"
 
@@ -105,7 +114,7 @@ public class Main {
         String tensStr = "";
         String hundsStr = "";
 
-        int blkCount = 1; int pwr = 1000;   // number is broken up into blocks of 3; this counts those blocks
+        int blkCount = 1; int pwr = 1000;   // input number is broken up into blocks of 3; this counts those blocks
         while ((n / pwr) >= 1 ) {
             pwr = pwr * 1000;
             blkCount++;
@@ -196,7 +205,6 @@ public class Main {
     }
     public static String getTens(int n) {
         int highTens = ((n - ((n / 100)*100 )) / 10);
-        int lowTens = ((n - ((n / 100)*100 )) % 10);
         switch (highTens){
             case 9:
                 return "Ninety ";
@@ -270,7 +278,7 @@ public class Main {
     }
 
     public static boolean tttOutcome (char [][] board) {
-        // Problem 4: write a method to check if someone has one in a game of tic-tac-toe
+        // Exercise 4: write a method to check if someone has won in a game of tic-tac-toe
 
         // My solution was first solved for 'X' then added 'O' as valid tokens on the T-T-T board
 
@@ -312,7 +320,7 @@ public class Main {
     }
 
     public static int smallestDiff (int[] arr1, int[] arr2) {
-        // Problem 3: given two arrays, compute the pair values (one value in each array) with the smallest
+        // Exercise 3: given two arrays, compute the pair values (one value in each array) with the smallest
         //  non-negative difference.  Return the difference.
 
         int curDiff; int val1=0; int val2=0;
@@ -337,7 +345,7 @@ public class Main {
     public static void intersection (int x1, int y1, int x2, int y2,
                                         int x3, int y3, int x4, int y4) {
 
-        // Problem 2: given 2 straight line segments (represented as a start and end point),
+        // Exercise 2: given 2 straight line segments (represented as a start and end point),
         //  compute the point of intersection, if any.
 
         // Note: easy to derive using math formula search
@@ -375,11 +383,11 @@ public class Main {
     }
 
     public static void numberSwapper (int a, int b) {
-        // Problem 1: write a function to swap two numbers in place (no temp variables)
+        // Exercise 1: write a function to swap two variable values in place (without using temp variables)
 
-        // simple solution is to use subtraction with the two values a and b
+        // simple solution is to use subtraction/addition/subtraction with the two values a and b
 
-        System.out.println("Before Switch: a:" + a + "  b:" + b);
+        System.out.println("Before Swap: a:" + a + "  b:" + b);
         if (a > b) {
             a = a - b;
             b = a + b;
@@ -389,7 +397,7 @@ public class Main {
             a = b + a;
             b = a - b;
         }
-        System.out.println("After Switch: a:" + a + "  b:" + b);
+        System.out.println("After Swap: a:" + a + "  b:" + b);
     }
 
 } // end class
